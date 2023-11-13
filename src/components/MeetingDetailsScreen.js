@@ -120,9 +120,9 @@ export function MeetingDetailsScreen({
                 setMeetingMode(Constants.modes.CONFERENCE);
               }}
             >
-              Unirse como host
+              Unirse como participante
             </button>
-            <button
+            {/* <button
               className="w-full bg-gray-650 text-white px-2 py-3 rounded-xl mt-5"
               onClick={(e) => {
                 setIsJoinMeetingClicked(true);
@@ -130,7 +130,7 @@ export function MeetingDetailsScreen({
               }}
             >
               Unirse como viewer
-            </button>
+            </button> */}
           </div>
         </div>
       )}
