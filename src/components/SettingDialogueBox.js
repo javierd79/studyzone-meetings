@@ -349,7 +349,7 @@ export default function SettingDialogueBox({
                               <div className="col-span-7">
                                 <div className="flex flex-col mt-6">
                                   <p className="text-sm text-left text-white font-bold">
-                                    Camera
+                                    Camara
                                   </p>
 
                                   <div className="w-full mt-4 text-left">
@@ -360,7 +360,7 @@ export default function SettingDialogueBox({
                                             <button className="flex items-center justify-between text-white w-full border border-gray-300 rounded py-3 px-2">
                                               {selectedWebcamLabel
                                                 ? selectedWebcamLabel
-                                                : "Select"}
+                                                : "Seleccionar"}
                                               <ChevronDownIcon
                                                 className="h-4 w-4"
                                                 style={{

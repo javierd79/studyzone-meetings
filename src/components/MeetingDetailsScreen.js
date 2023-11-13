@@ -25,7 +25,7 @@ export function MeetingDetailsScreen({
     >
       {iscreateMeetingClicked ? (
         <div className="border border-solid border-gray-400 rounded-xl px-4 py-3  flex items-center justify-center">
-          <p className="text-white text-base">{`Studio code : ${studioCode}`}</p>
+          <p className="text-white text-base">{`Codigo de sala : ${studioCode}`}</p>
           <button
             className="ml-2"
             onClick={() => {
@@ -50,12 +50,12 @@ export function MeetingDetailsScreen({
             onChange={(e) => {
               setStudioCode(e.target.value);
             }}
-            placeholder={"Enter studio code"}
+            placeholder={"Ingrese codigo de sala"}
             className="px-4 py-3 bg-gray-650 rounded-xl text-white w-full text-center"
           />
           {studioCodeError && (
             <p className="text-xs text-red-600">
-              Please enter valid studioCode
+              Ingrese un codigo de sala de estudio valido
             </p>
           )}
         </>
@@ -66,7 +66,7 @@ export function MeetingDetailsScreen({
           <input
             value={participantName}
             onChange={(e) => setParticipantName(e.target.value)}
-            placeholder="Enter your name"
+            placeholder="Ingrese su nombre"
             className="px-4 py-3 mt-5 bg-gray-650 rounded-xl text-white w-full text-center"
           />
           <button
@@ -89,11 +89,11 @@ export function MeetingDetailsScreen({
             }}
           >
             {iscreateMeetingClicked
-              ? "Start a meeting"
+              ? "Iniciar reunion"
               : isJoinMeetingClicked &&
                 meetingMode === Constants.modes.CONFERENCE
-              ? "Join Studio"
-              : "Join Streaming Room"}
+              ? "Unirse a un estudio"
+              : "Unirse a una sala de stream"}
           </button>
         </>
       )}
@@ -110,7 +110,7 @@ export function MeetingDetailsScreen({
                 setMeetingMode(Constants.modes.CONFERENCE);
               }}
             >
-              Create a meeting
+              Crear nueva sesion
             </button>
 
             <button
@@ -120,7 +120,7 @@ export function MeetingDetailsScreen({
                 setMeetingMode(Constants.modes.CONFERENCE);
               }}
             >
-              Join as a Host
+              Unirse como host
             </button>
             <button
               className="w-full bg-gray-650 text-white px-2 py-3 rounded-xl mt-5"
@@ -129,7 +129,7 @@ export function MeetingDetailsScreen({
                 setMeetingMode(Constants.modes.VIEWER);
               }}
             >
-              Join as a Viewer
+              Unirse como viewer
             </button>
           </div>
         </div>

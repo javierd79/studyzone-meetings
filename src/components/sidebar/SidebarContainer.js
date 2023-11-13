@@ -65,17 +65,17 @@ const SideBarTabView = ({
                           sideBarMode.slice(1).toLowerCase() || ""
                       } (${new Map(participants)?.size})`
                     : sideBarMode === sideBarModes.CREATE_POLL
-                    ? "Create a poll"
+                    ? "Crear una encuesta"
                     : sideBarMode === sideBarModes.POLLS
                     ? polls?.length >= 1 || draftPolls?.length >= 1
-                      ? `Polls ${
+                      ? `Encuestas ${
                           polls?.length || draftPolls?.length
                             ? `(${polls?.length || draftPolls?.length})`
                             : ""
                         }`
                       : meetingMode === Constants.modes.VIEWER
-                      ? `Polls ${polls?.length ? `(${polls?.length})` : ""}`
-                      : "Create a poll"
+                      ? `Encuestas ${polls?.length ? `(${polls?.length})` : ""}`
+                      : "Crear una encuesta"
                     : sideBarMode === sideBarModes.ECOMMERCE
                     ? "Products"
                     : sideBarMode.charAt(0).toUpperCase() +

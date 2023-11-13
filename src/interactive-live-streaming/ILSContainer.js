@@ -185,22 +185,22 @@ export function ILSContainer({
     const { changeWebcam, changeMic, muteMic, disableWebcam } =
       mMeetingRef.current;
 
-    if (webcamEnabled && selectedWebcam.id) {
-      await new Promise((resolve) => {
-        disableWebcam();
-        setTimeout(async () => {
-          const track = await createCameraVideoTrack({
-            optimizationMode: "motion",
-            encoderConfig: "h540p_w960p",
-            facingMode: "environment",
-            cameraId: selectedWebcam.id,
-            multiStream: false,
-          });
-          changeWebcam(track);
-          resolve();
-        }, 500);
-      });
-    }
+    // if (webcamEnabled && selectedWebcam.id) {
+    //   await new Promise((resolve) => {
+    //     disableWebcam();
+    //     setTimeout(async () => {
+    //       const track = await createCameraVideoTrack({
+    //         optimizationMode: "motion",
+    //         encoderConfig: "h540p_w960p",
+    //         facingMode: "environment",
+    //         cameraId: selectedWebcam.id,
+    //         multiStream: false,
+    //       });
+    //       changeWebcam(track);
+    //       resolve();
+    //     }, 500);
+    //   });
+    // }
 
     if (micEnabled && selectedMic.id) {
       await new Promise((resolve) => {
@@ -236,7 +236,7 @@ export function ILSContainer({
     setMeetingErrorVisible(true);
     setMeetingError({
       code,
-      message: isJoiningError ? "Unable to join meeting!" : message,
+      message: isJoiningError ? "No puedes unirte a la meeting!" : message,
     });
   };
 
@@ -268,7 +268,7 @@ export function ILSContainer({
         `https://static.videosdk.live/prebuilt/notification.mp3`
       ).play();
 
-      toast(`${isLocal ? "You" : nameTructed(senderName, 15)} raised hand 🖐🏼`, {
+      toast(`${isLocal ? "Tu" : nameTructed(senderName, 15)} levantaste la mano 🖐🏼`, {
         position: "bottom-left",
         autoClose: 4000,
         hideProgressBar: true,
@@ -298,7 +298,7 @@ export function ILSContainer({
 
         toast(
           `${trimSnackBarText(
-            `${nameTructed(senderName, 15)} says: ${message}`
+            `${nameTructed(senderName, 15)} dice: ${message}`
           )}`,
           {
             position: "bottom-left",
@@ -394,8 +394,6 @@ export function ILSContainer({
               <ILSBottomBar
                 bottomBarHeight={bottomBarHeight}
                 setIsMeetingLeft={setIsMeetingLeft}
-                selectWebcamDeviceId={selectWebcamDeviceId}
-                setSelectWebcamDeviceId={setSelectWebcamDeviceId}
                 selectMicDeviceId={selectMicDeviceId}
                 setSelectMicDeviceId={setSelectMicDeviceId}
                 meetingMode={meetingMode}
@@ -413,7 +411,7 @@ export function ILSContainer({
           onSuccess={() => {
             setMeetingErrorVisible(false);
           }}
-          title={`Error Code: ${meetingError.code}`}
+          title={`Codigo de error: ${meetingError.code}`}
           subTitle={meetingError.message}
         />
       </div>

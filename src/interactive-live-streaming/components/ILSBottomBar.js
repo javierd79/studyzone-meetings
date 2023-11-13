@@ -41,8 +41,8 @@ import { useMeetingAppContext } from "../../MeetingAppContextDef";
 export function ILSBottomBar({
   bottomBarHeight,
   setIsMeetingLeft,
-  selectWebcamDeviceId,
-  setSelectWebcamDeviceId,
+  // selectWebcamDeviceId,
+  // setSelectWebcamDeviceId,
   selectMicDeviceId,
   setSelectMicDeviceId,
   meetingMode,
@@ -57,15 +57,15 @@ export function ILSBottomBar({
     return isMobile || isTab ? (
       <MobileIconButton
         id="RaiseHandBTN"
-        tooltipTitle={"Raise hand"}
+        tooltipTitle={"Levantar mano"}
         Icon={RaiseHandIcon}
         onClick={RaiseHand}
-        buttonText={"Raise Hand"}
+        buttonText={"Levantar mano"}
       />
     ) : (
       <OutlinedButton
         onClick={RaiseHand}
-        tooltip={"Raise Hand"}
+        tooltip={"Levantar mano"}
         Icon={RaiseHandIcon}
       />
     );
@@ -117,14 +117,14 @@ export function ILSBottomBar({
         isFocused={isRecording}
         tooltip={
           recordingState === Constants.recordingEvents.RECORDING_STARTED
-            ? "Stop Recording"
+            ? "Parar grabacion"
             : recordingState === Constants.recordingEvents.RECORDING_STARTING
-            ? "Starting Recording"
+            ? "Iniciando grabacion"
             : recordingState === Constants.recordingEvents.RECORDING_STOPPED
-            ? "Start Recording"
+            ? "Iniciar grabacion"
             : recordingState === Constants.recordingEvents.RECORDING_STOPPING
-            ? "Stopping Recording"
-            : "Start Recording"
+            ? "Parando grabacion"
+            : "Iniciar grabacion"
         }
         lottieOption={isRecording ? defaultOptions : null}
         isRequestProcessing={isRequestProcessing}
@@ -169,7 +169,7 @@ export function ILSBottomBar({
           borderColor={localMicOn && "#ffffff33"}
           isFocused={localMicOn}
           focusIconColor={localMicOn && "white"}
-          tooltip={"Toggle Mic"}
+          tooltip={"Activar mic"}
           renderRightComponent={() => {
             return (
               <>
@@ -211,7 +211,7 @@ export function ILSBottomBar({
                               <div>
                                 <div className="flex items-center p-3 pb-0">
                                   <p className="ml-3 text-sm text-gray-900">
-                                    {"MICROPHONE"}
+                                    {"MICROFONO"}
                                   </p>
                                 </div>
                                 <div className="flex flex-col">
@@ -256,7 +256,7 @@ export function ILSBottomBar({
                 >
                   <div className={"rounded-md p-1.5 bg-black "}>
                     <p className="text-base text-white ">
-                      {"Change microphone"}
+                      {"Cambiar microfono"}
                     </p>
                   </div>
                 </div>
@@ -299,24 +299,24 @@ export function ILSBottomBar({
       <>
         <OutlinedButton
           Icon={localWebcamOn ? WebcamOnIcon : WebcamOffIcon}
-          onClick={async () => {
-            let track;
-            if (!localWebcamOn) {
-              track = await createCameraVideoTrack({
-                optimizationMode: "motion",
-                encoderConfig: "h540p_w960p",
-                facingMode: "environment",
-                multiStream: false,
-                cameraId: selectWebcamDeviceId,
-              });
-            }
-            mMeeting.toggleWebcam(track);
-          }}
+          // onClick={async () => {
+          //   let track;
+          //   if (!localWebcamOn) {
+          //     track = await createCameraVideoTrack({
+          //       optimizationMode: "motion",
+          //       encoderConfig: "h540p_w960p",
+          //       facingMode: "environment",
+          //       multiStream: false,
+          //       cameraId: selectWebcamDeviceId,
+          //     });
+          //   }
+          //   mMeeting.toggleWebcam(track);
+          // }}
           bgColor={localWebcamOn ? "bg-gray-750" : "bg-white"}
           borderColor={localWebcamOn && "#ffffff33"}
           isFocused={localWebcamOn}
           focusIconColor={localWebcamOn && "white"}
-          tooltip={"Toggle Webcam"}
+          tooltip={"Manejar camara"}
           renderRightComponent={() => {
             return (
               <>
@@ -364,30 +364,11 @@ export function ILSBottomBar({
                                 <div className="flex flex-col">
                                   {webcams.map(({ deviceId, label }, index) => (
                                     <div
-                                      className={`px-3 py-1 my-1 pl-6 text-white text-left ${
-                                        deviceId === selectWebcamDeviceId &&
-                                        "bg-gray-150"
-                                      }`}
+                                      className="px-3 py-1 my-1 pl-6 text-white text-left bg-gray-150"
                                     >
                                       <button
-                                        className={`flex flex-1 w-full ${
-                                          deviceId === selectWebcamDeviceId &&
-                                          "bg-gray-150"
-                                        }`}
+                                        className={`flex flex-1 w-full bg-gray-150`}
                                         key={`output_webcams_${deviceId}`}
-                                        onClick={async () => {
-                                          setSelectWebcamDeviceId(deviceId);
-                                          const track =
-                                            await createCameraVideoTrack({
-                                              optimizationMode: "motion",
-                                              encoderConfig: "h540p_w960p",
-                                              facingMode: "environment",
-                                              multiStream: false,
-                                              cameraId: deviceId,
-                                            });
-                                          changeWebcam(track);
-                                          close();
-                                        }}
                                       >
                                         {label || `Webcam ${index + 1}`}
                                       </button>
@@ -410,7 +391,7 @@ export function ILSBottomBar({
                   ref={tooltipRef}
                 >
                   <div className={"rounded-md p-1.5 bg-black "}>
-                    <p className="text-base text-white ">{"Change webcam"}</p>
+                    <p className="text-base text-white ">{"Cambiar webcam"}</p>
                   </div>
                 </div>
               </>
@@ -430,16 +411,16 @@ export function ILSBottomBar({
         tooltipTitle={
           presenterId
             ? localScreenShareOn
-              ? "Stop Presenting"
+              ? "Parar presentacion"
               : null
-            : "Present Screen"
+            : "Presentar pantalla"
         }
         buttonText={
           presenterId
             ? localScreenShareOn
-              ? "Stop Presenting"
+              ? "Parar presentacion"
               : null
-            : "Present Screen"
+            : "Presentar pantalla"
         }
         isFocused={localScreenShareOn}
         Icon={ScreenShareIcon}
@@ -466,9 +447,9 @@ export function ILSBottomBar({
         tooltip={
           presenterId
             ? localScreenShareOn
-              ? "Stop Presenting"
+              ? "Parar presentacion"
               : null
-            : "Present Screen"
+            : "Presentar pantalla"
         }
         disabled={presenterId ? (localScreenShareOn ? false : true) : false}
       />
@@ -486,7 +467,7 @@ export function ILSBottomBar({
           leave();
           setIsMeetingLeft(true);
         }}
-        tooltip="Leave Meeting"
+        tooltip="Salir de reunion"
       />
     );
   };
@@ -513,7 +494,7 @@ export function ILSBottomBar({
           );
         }}
         isFocused={sideBarMode === "CHAT"}
-        tooltip="View Chat"
+        tooltip="Ver Chat"
       />
     );
   };
@@ -522,9 +503,9 @@ export function ILSBottomBar({
     const { participants } = useMeeting();
     return isMobile || isTab ? (
       <MobileIconButton
-        tooltipTitle={"Participants"}
+        tooltipTitle={"Participantes"}
         isFocused={sideBarMode === sideBarModes.PARTICIPANTS}
-        buttonText={"Participants"}
+        buttonText={"Participantes"}
         disabledOpacity={1}
         Icon={ParticipantsIcon}
         onClick={() => {
@@ -544,7 +525,7 @@ export function ILSBottomBar({
           );
         }}
         isFocused={sideBarMode === sideBarModes.PARTICIPANTS}
-        tooltip={"View Participants"}
+        tooltip={"Ver Participantes"}
         badge={`${new Map(participants)?.size}`}
         disabled={meetingMode === Constants.modes.VIEWER}
       />
@@ -555,8 +536,8 @@ export function ILSBottomBar({
     return isMobile || isTab ? (
       <MobileIconButton
         id="poll-btn"
-        tooltipTitle={"Poll"}
-        buttonText={"Poll"}
+        tooltipTitle={"Encuestas"}
+        buttonText={"Encuestas"}
         isFocused={sideBarMode === sideBarModes.POLLS}
         Icon={PollIcon}
         onClick={() => {
@@ -574,120 +555,120 @@ export function ILSBottomBar({
           );
         }}
         isFocused={sideBarMode === sideBarModes.POLLS}
-        tooltip={"Poll"}
+        tooltip={"Encuestas"}
       />
     );
   };
 
-  const HLSBTN = ({ isMobile, isTab }) => {
-    const { startHls, stopHls, hlsState } = useMeeting({});
+  // const HLSBTN = ({ isMobile, isTab }) => {
+  //   const { startHls, stopHls, hlsState } = useMeeting({});
 
-    const isHls = useIsHls();
+  //   const isHls = useIsHls();
 
-    const { isRequestProcessing } = useMemo(
-      () => ({
-        isRequestProcessing:
-          hlsState === Constants.hlsEvents.HLS_STARTING ||
-          hlsState === Constants.hlsEvents.HLS_STOPPING,
-      }),
-      [hlsState]
-    );
+  //   const { isRequestProcessing } = useMemo(
+  //     () => ({
+  //       isRequestProcessing:
+  //         hlsState === Constants.hlsEvents.HLS_STARTING ||
+  //         hlsState === Constants.hlsEvents.HLS_STOPPING,
+  //     }),
+  //     [hlsState]
+  //   );
 
-    const { type, priority, gridSize } = useMemo(
-      () => ({
-        type: "SPOTLIGHT",
-        priority: "PIN",
-        gridSize: "12",
-      }),
-      []
-    );
+  //   const { type, priority, gridSize } = useMemo(
+  //     () => ({
+  //       type: "SPOTLIGHT",
+  //       priority: "PIN",
+  //       gridSize: "12",
+  //     }),
+  //     []
+  //   );
 
-    const typeRef = useRef(type);
-    const priorityRef = useRef(priority);
-    const gridSizeRef = useRef(gridSize);
-    const isHlsRef = useRef(isHls);
+  //   const typeRef = useRef(type);
+  //   const priorityRef = useRef(priority);
+  //   const gridSizeRef = useRef(gridSize);
+  //   const isHlsRef = useRef(isHls);
 
-    useEffect(() => {
-      typeRef.current = type;
-    }, [type]);
+  //   useEffect(() => {
+  //     typeRef.current = type;
+  //   }, [type]);
 
-    useEffect(() => {
-      priorityRef.current = priority;
-    }, [priority]);
+  //   useEffect(() => {
+  //     priorityRef.current = priority;
+  //   }, [priority]);
 
-    useEffect(() => {
-      gridSizeRef.current = gridSize;
-    }, [gridSize]);
+  //   useEffect(() => {
+  //     gridSizeRef.current = gridSize;
+  //   }, [gridSize]);
 
-    useEffect(() => {
-      isHlsRef.current = isHls;
-    }, [isHls]);
+  //   useEffect(() => {
+  //     isHlsRef.current = isHls;
+  //   }, [isHls]);
 
-    const defaultOptions = {
-      loop: true,
-      autoplay: true,
-      animationData: liveHLS,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-      height: 64,
-      width: 170,
-    };
+  //   const defaultOptions = {
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData: liveHLS,
+  //     rendererSettings: {
+  //       preserveAspectRatio: "xMidYMid slice",
+  //     },
+  //     height: 64,
+  //     width: 170,
+  //   };
 
-    const _handleStartHLS = () => {
-      const type = typeRef.current;
-      const priority = priorityRef.current;
-      const gridSize = gridSizeRef.current;
+  //   const _handleStartHLS = () => {
+  //     const type = typeRef.current;
+  //     const priority = priorityRef.current;
+  //     const gridSize = gridSizeRef.current;
 
-      const layout = { type, priority, gridSize };
+  //     const layout = { type, priority, gridSize };
 
-      startHls({ layout, theme: "DARK" });
-    };
+  //     startHls({ layout, theme: "DARK" });
+  //   };
 
-    const _handleClick = () => {
-      const isHls = isHlsRef.current;
+  //   const _handleClick = () => {
+  //     const isHls = isHlsRef.current;
 
-      if (isHls) {
-        stopHls();
-      } else {
-        _handleStartHLS();
-      }
-    };
+  //     if (isHls) {
+  //       stopHls();
+  //     } else {
+  //       _handleStartHLS();
+  //     }
+  //   };
 
-    return isMobile || isTab ? (
-      <MobileIconButton
-        onClick={_handleClick}
-        tooltipTitle={
-          hlsState === Constants.hlsEvents.HLS_STARTED ||
-          hlsState === Constants.hlsEvents.HLS_PLAYABLE
-            ? "Stop HLS"
-            : hlsState === Constants.hlsEvents.HLS_STARTING
-            ? "Starting HLS"
-            : hlsState === Constants.hlsEvents.HLS_STOPPED
-            ? "Start HLS"
-            : hlsState === Constants.hlsEvents.HLS_STOPPING
-            ? "Stopping HLS"
-            : "Start HLS"
-        }
-        Icon={LiveIcon}
-        buttonText={
-          hlsState === Constants.hlsEvents.HLS_STARTED ||
-          hlsState === Constants.hlsEvents.HLS_PLAYABLE
-            ? "Stop HLS"
-            : hlsState === Constants.hlsEvents.HLS_STARTING
-            ? "Starting HLS"
-            : hlsState === Constants.hlsEvents.HLS_STOPPED
-            ? "Start HLS"
-            : hlsState === Constants.hlsEvents.HLS_STOPPING
-            ? "Stopping HLS"
-            : "Start HLS"
-        }
-        isFocused={isHls}
-        lottieOption={isHls ? defaultOptions : null}
-        isRequestProcessing={isRequestProcessing}
-      />
-    ) : null;
-  };
+  //   return isMobile || isTab ? (
+  //     <MobileIconButton
+  //       onClick={_handleClick}
+  //       tooltipTitle={
+  //         hlsState === Constants.hlsEvents.HLS_STARTED ||
+  //         hlsState === Constants.hlsEvents.HLS_PLAYABLE
+  //           ? "Parar HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STARTING
+  //           ? "Starting HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STOPPED
+  //           ? "Start HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STOPPING
+  //           ? "Stopping HLS"
+  //           : "Start HLS"
+  //       }
+  //       Icon={LiveIcon}
+  //       buttonText={
+  //         hlsState === Constants.hlsEvents.HLS_STARTED ||
+  //         hlsState === Constants.hlsEvents.HLS_PLAYABLE
+  //           ? "Stop HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STARTING
+  //           ? "Starting HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STOPPED
+  //           ? "Start HLS"
+  //           : hlsState === Constants.hlsEvents.HLS_STOPPING
+  //           ? "Stopping HLS"
+  //           : "Start HLS"
+  //       }
+  //       isFocused={isHls}
+  //       lottieOption={isHls ? defaultOptions : null}
+  //       isRequestProcessing={isRequestProcessing}
+  //     />
+  //   ) : null;
+  // };
 
   const ReactionBTN = ({ isMobile, isTab }) => {
     const [btnClicked, setBtnClicked] = useState(false);
@@ -951,7 +932,7 @@ export function ILSBottomBar({
                                 isTab={isTab}
                               />
                             ) : icon === BottomBarButtonTypes.HLS ? (
-                              <HLSBTN isMobile={isMobile} isTab={isTab} />
+                              null
                             ) : icon === BottomBarButtonTypes.POLL ? (
                               <PollBTN isMobile={isMobile} isTab={isTab} />
                             ) : icon === BottomBarButtonTypes.REACTION &&

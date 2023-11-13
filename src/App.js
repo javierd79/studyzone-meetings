@@ -28,7 +28,7 @@ const App = () => {
   useEffect(() => {
     if (isMobile) {
       window.onbeforeunload = () => {
-        return "Are you sure you want to exit?";
+        return "Esta seguro que quiere salir?";
       };
     }
   }, [isMobile]);

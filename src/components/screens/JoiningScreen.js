@@ -260,7 +260,6 @@ export function JoiningScreen({
 
       if (videoPlayerRef.current) {
         videoPlayerRef.current.srcObject = videoSrcObject;
-        videoPlayerRef.current.play();
       }
 
       setTimeout(() => {
@@ -328,8 +327,8 @@ export function JoiningScreen({
           <div className={"rounded-md p-1.5 bg-black "}>
             <p className="text-base text-white ">
               {onState
-                ? `Turn off ${mic ? "mic" : "webcam"}`
-                : `Turn on ${mic ? "mic" : "webcam"}`}
+                ? `Apagar ${mic ? "mic" : "webcam"}`
+                : `Encender ${mic ? "mic" : "webcam"}`}
             </p>
           </div>
         </div>
@@ -367,8 +366,8 @@ export function JoiningScreen({
                             {!webcamOn ? (
                               <p className="text-xl xl:text-lg 2xl:text-xl text-white">
                                 {meetingMode === Constants.modes.VIEWER
-                                  ? "You are not permitted to use your microphone and camera."
-                                  : "The camera is off"}
+                                  ? "No esta permitido usar tu microfono o camara"
+                                  : "La camara esta desactivada"}
                               </p>
                             ) : null}
                           </div>
@@ -429,7 +428,7 @@ export function JoiningScreen({
                               <CheckCircleIcon className="h-5 w-5" />
                             </button>
                             <p className="text-base text-white ml-1">
-                              Check your audio and video
+                              Revisa tu audio y video
                             </p>
                           </div>
                         </div>
@@ -486,9 +485,8 @@ export function JoiningScreen({
         onSuccess={() => {
           setDlgMuted(false);
         }}
-        title="System mic is muted"
-        subTitle="You're default microphone is muted, please unmute it or increase audio
-            input volume from system settings."
+        title="El microfono esta silenciado"
+        subTitle="Las configuraciones por defecto de tu microfono es de silenciado. Por favor, desilencialo"
       />
 
       <ConfirmBox
@@ -497,8 +495,8 @@ export function JoiningScreen({
         onSuccess={() => {
           setDlgDevices(false);
         }}
-        title="Mic or webcam not available"
-        subTitle="Please connect a mic and webcam to speak and share your video in the meeting. You can also join without them."
+        title="Microfono o camara no disponible"
+        subTitle="Por favor, conecte un micrófono y una webcam para hablar y compartir su vídeo en la reunión. También puede participar sin ellos."
       />
     </div>
   );

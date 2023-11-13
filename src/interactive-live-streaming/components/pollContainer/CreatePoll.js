@@ -50,7 +50,7 @@ const CreatePollPart = ({
       <input
         type="text"
         className="bg-gray-750  text-white text-sm rounded block w-full p-2.5 border border-gray-600 placeholder-gray-400 focus:ring-0 focus:border-purple-550"
-        placeholder="What you want to ask ?"
+        placeholder="Que te gustaria preguntar ?"
         autoFocus
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
@@ -108,7 +108,7 @@ const CreatePollPart = ({
                             ? "bg-purple-550"
                             : "bg-customGray-900"
                         } text-white focus:ring-0 rounded-l`}
-                        placeholder="Add your options"
+                        placeholder="Ingresa tus opciones"
                         autocomplete="off"
                         value={item.option}
                         onBlur={_handleKeyDown}
@@ -187,7 +187,7 @@ const CreatePollPart = ({
             )}
             <input
               type={"text"}
-              placeholder="Add your options"
+              placeholder="Ingresa tus opciones"
               inputref={createOptionRef}
               className={`border-none ${
                 option.isCorrect && option.option
@@ -217,7 +217,7 @@ const CreatePollPart = ({
             <div style={{ display: "flex" }}>
               <input
                 type={"text"}
-                placeholder="Add your options"
+                placeholder="Ingresa tus opciones"
                 autocomplete="off"
                 onChange={(e) => {}}
                 onFocus={(e) => {
@@ -232,12 +232,12 @@ const CreatePollPart = ({
 
           {minOptionErr && (
             <p className="text-xs text-red-150 mt-1">
-              Please add atleast 2 options.
+              Ingrese por lo menos dos opciones.
             </p>
           )}
           {optionErr && (
             <p className="text-xs text-red-150 mt-1">
-              Please enter valid option value.
+              Ingrese un opcion valida.
             </p>
           )}
           <div className="mt-8">
@@ -250,13 +250,13 @@ const CreatePollPart = ({
                   }}
                   className="bg-transparent h-5 w-5 border-2 border-gray-300 focus:outline-none focus:border-gray-300 focus:ring-0"
                 />
-                <p className="text-base text-white ml-3">Mark correct option</p>
+                <p className="text-base text-white ml-3">Marcar como opcion correcta</p>
               </Label>
             </div>
             {correctAnswerErr && (
               <p className="text-xs text-red-150 mt-1">
                 {
-                  "Please check any one option as correct if `isMarkAsCorrectChecked`"
+                  "Verifica si una opcion correcta ha sido marcada"
                 }
               </p>
             )}
@@ -271,7 +271,7 @@ const CreatePollPart = ({
                       }}
                       className="bg-transparent h-5 w-5 border-2 border-gray-300 focus:outline-none focus:border-gray-300 focus:ring-0"
                     />
-                    <p className="text-base text-white ml-3">Set Timer</p>
+                    <p className="text-base text-white ml-3">Agregar temporizador</p>
                   </Label>
                 </div>
                 {isSetTimerChecked && (
@@ -295,7 +295,7 @@ const CreatePollPart = ({
               <div className="mt-1 ml-1">
                 {timerErr && (
                   <p className="text-xs text-red-150">
-                    {"Timer should be more than 30 seconds."}
+                    {"El temporizador debe ser mayor a 30 segundos"}
                   </p>
                 )}
               </div>
